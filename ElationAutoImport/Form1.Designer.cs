@@ -1,5 +1,4 @@
-﻿
-namespace ElationAutoImport
+﻿namespace ElationAutoImport
 {
     partial class Form1
     {
@@ -50,6 +49,7 @@ namespace ElationAutoImport
             this.rename_File1 = new ElationAutoImport.Rename_File();
             this.homePage1 = new ElationAutoImport.HomePage();
             this.mamogramReport1 = new ElationAutoImport.MamogramReport();
+            this.customFile1 = new ElationAutoImport.customFile();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -152,7 +152,7 @@ namespace ElationAutoImport
             this.dexaReport.Name = "dexaReport";
             this.dexaReport.Size = new System.Drawing.Size(323, 100);
             this.dexaReport.TabIndex = 5;
-            this.dexaReport.Text = "Coming Soon";
+            this.dexaReport.Text = "Custom File";
             this.dexaReport.UseVisualStyleBackColor = true;
             this.dexaReport.Click += new System.EventHandler(this.dexaReport_Click);
             // 
@@ -262,6 +262,7 @@ namespace ElationAutoImport
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_2);
             // 
             // rename_File1
             // 
@@ -272,9 +273,9 @@ namespace ElationAutoImport
             // 
             // homePage1
             // 
-            this.homePage1.Location = new System.Drawing.Point(329, 115);
+            this.homePage1.Location = new System.Drawing.Point(329, 126);
             this.homePage1.Name = "homePage1";
-            this.homePage1.Size = new System.Drawing.Size(1359, 755);
+            this.homePage1.Size = new System.Drawing.Size(1359, 744);
             this.homePage1.TabIndex = 4;
             this.homePage1.Load += new System.EventHandler(this.homePage1_Load);
             // 
@@ -286,6 +287,13 @@ namespace ElationAutoImport
             this.mamogramReport1.TabIndex = 3;
             this.mamogramReport1.Load += new System.EventHandler(this.mamogramReport1_Load);
             // 
+            // customFile1
+            // 
+            this.customFile1.Location = new System.Drawing.Point(329, 126);
+            this.customFile1.Name = "customFile1";
+            this.customFile1.Size = new System.Drawing.Size(1359, 755);
+            this.customFile1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +301,7 @@ namespace ElationAutoImport
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1688, 873);
+            this.Controls.Add(this.customFile1);
             this.Controls.Add(this.rename_File1);
             this.Controls.Add(this.homePage1);
             this.Controls.Add(this.pictureBox1);
@@ -330,6 +339,6 @@ namespace ElationAutoImport
         private MamogramReport mamogramReport1;
         private HomePage homePage1;
         private Rename_File rename_File1;
+        private customFile customFile1;
     }
 }
-

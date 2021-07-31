@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ElationAutoImport
 {
     public partial class Form1 : Form
     {
-        private Button currentButton;
-        private Random random;
-        private int tempIndex;
         private Form activeForm;
         private bool mouseDown;
         private Point lastLocation;
@@ -72,7 +63,7 @@ namespace ElationAutoImport
         }
         private void dexaReport_Click(object sender, EventArgs e) //Dexa
         {
-
+            customFile1.BringToFront();
         }
         private void dreReport_Click(object sender, EventArgs e)
         {
@@ -135,6 +126,11 @@ namespace ElationAutoImport
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
         {
 
         }
