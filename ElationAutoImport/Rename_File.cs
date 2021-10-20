@@ -479,6 +479,13 @@ namespace ElationAutoImport
        
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            int scanCount = 0;
+            int missedCount = 0;
+            if (scannedFiles.Count == null) scanCount = 0;
+            else scanCount = scannedFiles.Count;
+            if (missedFiles.Count == null) missedCount = 0;
+            else missedCount = missedFiles.Count;
+
             tasksCompleted.Text = "Scanned: " + scannedFiles.Count + "  Missed: " + missedFiles.Count;
             foreach ((string, GeneralForm) x in missedFiles.ToArray())
             {
@@ -493,7 +500,8 @@ namespace ElationAutoImport
             }
             missedFiles = null; //Release Memory;
             showList = new PatientFiles(scannedFiles, this);
-            showList.Show();
+            //showList.Show();
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
