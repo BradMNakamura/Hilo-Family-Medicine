@@ -1,5 +1,4 @@
 # ElationAutoImporter
 
 Demo of software
-![Demo](https://user-images.githubusercontent.com/70090205/138051278-57da517c-59cf-4ceb-948e-e815b6794a9a.mp4)
-
+![Final](https://user-images.githubusercontent.com/70090205/138052169-3c3ba03d-0b9d-4dc6-a31e-933da300e444.gif)
