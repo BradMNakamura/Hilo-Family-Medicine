@@ -6,4 +6,4 @@ Every worker at Hilo Family Medicine takes a few hours each day to rename and up
 Demo of software
 ![Final](https://user-images.githubusercontent.com/70090205/138052169-3c3ba03d-0b9d-4dc6-a31e-933da300e444.gif)
 
-In this demonstration 57 files were able to be parsed and renamed properly in 18 seconds! This process would have taken a Hilo Family Medicine worker around two hours to finish.
+In this demonstration, 57 files were able to be parsed and named correctly in 18 seconds! This process would have taken a Hilo Family Medicine worker around two hours to finish.
