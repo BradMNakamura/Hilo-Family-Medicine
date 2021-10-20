@@ -29,203 +29,214 @@ namespace ElationAutoImport
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MamogramReport));
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.searchWorker = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.titleBox = new System.Windows.Forms.TextBox();
-            this.filenameBox = new System.Windows.Forms.TextBox();
-            this.doctypeBox = new System.Windows.Forms.TextBox();
-            this.dateBox = new System.Windows.Forms.TextBox();
-            this.reviewerBox = new System.Windows.Forms.TextBox();
+            this.patientFile = new AxAcroPDFLib.AxAcroPDF();
+            this.nextButton = new System.Windows.Forms.Button();
+            this.openFolder = new System.Windows.Forms.Button();
+            this.prevButon = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.fileText = new System.Windows.Forms.TextBox();
+            this.dateText = new System.Windows.Forms.TextBox();
+            this.docBox = new System.Windows.Forms.ComboBox();
+            this.reviewerText = new System.Windows.Forms.ComboBox();
+            this.searchPatient = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2.SuspendLayout();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.patientFile)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label2
+            // searchWorker
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(234, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 33);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Select PDF";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(965, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(216, 33);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Elation Preview";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.listBox1);
-            this.panel2.Location = new System.Drawing.Point(2, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 630);
-            this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(454, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(220, 56);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Refresh";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(228, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(220, 56);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "PDF Preview";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_2);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(3, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(220, 56);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Folder Path";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(-2, 62);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(677, 484);
-            this.listBox1.TabIndex = 2;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.searchWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.searchWorker_DoWork);
+            this.searchWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.searchWorker_RunWorkerCompleted);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.titleBox);
-            this.panel1.Controls.Add(this.filenameBox);
-            this.panel1.Controls.Add(this.doctypeBox);
-            this.panel1.Controls.Add(this.dateBox);
-            this.panel1.Controls.Add(this.reviewerBox);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(3, 122);
+            this.panel1.Controls.Add(this.patientFile);
+            this.panel1.Controls.Add(this.nextButton);
+            this.panel1.Controls.Add(this.openFolder);
+            this.panel1.Controls.Add(this.prevButon);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1356, 633);
+            this.panel1.Size = new System.Drawing.Size(678, 755);
             this.panel1.TabIndex = 4;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // titleBox
+            // patientFile
             // 
-            this.titleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleBox.Location = new System.Drawing.Point(783, 418);
-            this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(557, 31);
-            this.titleBox.TabIndex = 7;
-            this.titleBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.patientFile.Enabled = true;
+            this.patientFile.Location = new System.Drawing.Point(0, 48);
+            this.patientFile.Name = "patientFile";
+            this.patientFile.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("patientFile.OcxState")));
+            this.patientFile.Size = new System.Drawing.Size(669, 701);
+            this.patientFile.TabIndex = 3;
             // 
-            // filenameBox
+            // nextButton
             // 
-            this.filenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filenameBox.Location = new System.Drawing.Point(753, 155);
-            this.filenameBox.Name = "filenameBox";
-            this.filenameBox.Size = new System.Drawing.Size(557, 31);
-            this.filenameBox.TabIndex = 6;
-            this.filenameBox.TextChanged += new System.EventHandler(this.filenameBox_TextChanged);
+            this.nextButton.Location = new System.Drawing.Point(447, 0);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(223, 51);
+            this.nextButton.TabIndex = 2;
+            this.nextButton.Text = "Next";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
-            // doctypeBox
+            // openFolder
             // 
-            this.doctypeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doctypeBox.Location = new System.Drawing.Point(784, 330);
-            this.doctypeBox.Name = "doctypeBox";
-            this.doctypeBox.Size = new System.Drawing.Size(527, 31);
-            this.doctypeBox.TabIndex = 4;
+            this.openFolder.Location = new System.Drawing.Point(222, 1);
+            this.openFolder.Name = "openFolder";
+            this.openFolder.Size = new System.Drawing.Size(223, 51);
+            this.openFolder.TabIndex = 1;
+            this.openFolder.Text = "Select Folder";
+            this.openFolder.UseVisualStyleBackColor = true;
+            this.openFolder.Click += new System.EventHandler(this.openFolder_Click);
             // 
-            // dateBox
+            // prevButon
             // 
-            this.dateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateBox.Location = new System.Drawing.Point(783, 284);
-            this.dateBox.Name = "dateBox";
-            this.dateBox.Size = new System.Drawing.Size(527, 31);
-            this.dateBox.TabIndex = 3;
+            this.prevButon.Location = new System.Drawing.Point(-3, 1);
+            this.prevButon.Name = "prevButon";
+            this.prevButon.Size = new System.Drawing.Size(223, 51);
+            this.prevButon.TabIndex = 0;
+            this.prevButon.Text = "Previous";
+            this.prevButon.UseVisualStyleBackColor = true;
+            this.prevButon.Click += new System.EventHandler(this.prevButon_Click);
             // 
-            // reviewerBox
+            // panel2
             // 
-            this.reviewerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reviewerBox.Location = new System.Drawing.Point(784, 240);
-            this.reviewerBox.Name = "reviewerBox";
-            this.reviewerBox.Size = new System.Drawing.Size(557, 31);
-            this.reviewerBox.TabIndex = 2;
+            this.panel2.Controls.Add(this.fileText);
+            this.panel2.Controls.Add(this.dateText);
+            this.panel2.Controls.Add(this.docBox);
+            this.panel2.Controls.Add(this.reviewerText);
+            this.panel2.Controls.Add(this.searchPatient);
+            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(678, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(680, 755);
+            this.panel2.TabIndex = 5;
+            // 
+            // fileText
+            // 
+            this.fileText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileText.Location = new System.Drawing.Point(70, 238);
+            this.fileText.Multiline = true;
+            this.fileText.Name = "fileText";
+            this.fileText.ReadOnly = true;
+            this.fileText.Size = new System.Drawing.Size(586, 41);
+            this.fileText.TabIndex = 8;
+            // 
+            // dateText
+            // 
+            this.dateText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateText.Location = new System.Drawing.Point(100, 369);
+            this.dateText.Name = "dateText";
+            this.dateText.Size = new System.Drawing.Size(536, 29);
+            this.dateText.TabIndex = 7;
+            // 
+            // docBox
+            // 
+            this.docBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.docBox.FormattingEnabled = true;
+            this.docBox.Items.AddRange(new object[] {
+            "Cardiac Report",
+            "Consultation Report",
+            "Hospital Report",
+            "Imaging Report",
+            "Laboratory Report",
+            "Legal Report",
+            "Medical Form Report",
+            "Miscellaneous Report",
+            "New Visit Note",
+            "Nonvisit Report"});
+            this.docBox.Location = new System.Drawing.Point(100, 414);
+            this.docBox.Name = "docBox";
+            this.docBox.Size = new System.Drawing.Size(556, 32);
+            this.docBox.TabIndex = 6;
+            // 
+            // reviewerText
+            // 
+            this.reviewerText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reviewerText.FormattingEnabled = true;
+            this.reviewerText.Location = new System.Drawing.Point(100, 324);
+            this.reviewerText.Name = "reviewerText";
+            this.reviewerText.Size = new System.Drawing.Size(556, 32);
+            this.reviewerText.TabIndex = 5;
+            // 
+            // searchPatient
+            // 
+            this.searchPatient.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.searchPatient.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.searchPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchPatient.FormattingEnabled = true;
+            this.searchPatient.Location = new System.Drawing.Point(1, 3);
+            this.searchPatient.Name = "searchPatient";
+            this.searchPatient.Size = new System.Drawing.Size(671, 50);
+            this.searchPatient.TabIndex = 4;
+            this.searchPatient.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(235, 652);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(223, 51);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Submit";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(682, 63);
+            this.pictureBox1.Location = new System.Drawing.Point(1, 148);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(671, 483);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // MamogramReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Name = "MamogramReport";
             this.Size = new System.Drawing.Size(1359, 755);
-            this.Load += new System.EventHandler(this.MamogramReport_Load);
-            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.patientFile)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.ComponentModel.BackgroundWorker searchWorker;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button openFolder;
+        private System.Windows.Forms.Button prevButon;
+        private System.Windows.Forms.ComboBox searchPatient;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox doctypeBox;
-        private System.Windows.Forms.TextBox dateBox;
-        private System.Windows.Forms.TextBox reviewerBox;
-        private System.Windows.Forms.TextBox titleBox;
-        public System.Windows.Forms.TextBox filenameBox;
+        private AxAcroPDFLib.AxAcroPDF patientFile;
+        private System.Windows.Forms.TextBox dateText;
+        private System.Windows.Forms.ComboBox docBox;
+        private System.Windows.Forms.ComboBox reviewerText;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox fileText;
     }
 }

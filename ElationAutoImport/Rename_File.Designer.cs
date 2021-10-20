@@ -53,9 +53,9 @@ namespace ElationAutoImport
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.patientFile = new AxAcroPDFLib.AxAcroPDF();
             this.convertFile = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.patientFile = new AxAcroPDFLib.AxAcroPDF();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patientFile)).BeginInit();
             this.SuspendLayout();
@@ -121,12 +121,12 @@ namespace ElationAutoImport
             // 
             // prcedureText
             // 
-            this.prcedureText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
+            this.prcedureText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prcedureText.Location = new System.Drawing.Point(36, 285);
             this.prcedureText.Multiline = true;
             this.prcedureText.Name = "prcedureText";
-            this.prcedureText.Size = new System.Drawing.Size(617, 69);
-            this.prcedureText.TabIndex = 25;
+            this.prcedureText.Size = new System.Drawing.Size(617, 71);
+            this.prcedureText.TabIndex = 0;
             this.prcedureText.TextChanged += new System.EventHandler(this.prcedureText_TextChanged);
             // 
             // label7
@@ -161,48 +161,43 @@ namespace ElationAutoImport
             // 
             // reviewingText
             // 
-            this.reviewingText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
-            this.reviewingText.Location = new System.Drawing.Point(217, 217);
+            this.reviewingText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reviewingText.Location = new System.Drawing.Point(217, 222);
             this.reviewingText.Name = "reviewingText";
-            this.reviewingText.Size = new System.Drawing.Size(424, 25);
-            this.reviewingText.TabIndex = 21;
-            this.reviewingText.TextChanged += new System.EventHandler(this.reviewingText_TextChanged);
+            this.reviewingText.Size = new System.Drawing.Size(436, 31);
+            this.reviewingText.TabIndex = 25;
             // 
             // documentText
             // 
-            this.documentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
-            this.documentText.Location = new System.Drawing.Point(217, 165);
+            this.documentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.documentText.Location = new System.Drawing.Point(217, 171);
             this.documentText.Name = "documentText";
-            this.documentText.Size = new System.Drawing.Size(424, 25);
-            this.documentText.TabIndex = 20;
-            this.documentText.TextChanged += new System.EventHandler(this.documentText_TextChanged);
+            this.documentText.Size = new System.Drawing.Size(436, 31);
+            this.documentText.TabIndex = 26;
             // 
             // orderingText
             // 
-            this.orderingText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
-            this.orderingText.Location = new System.Drawing.Point(217, 119);
+            this.orderingText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orderingText.Location = new System.Drawing.Point(217, 124);
             this.orderingText.Name = "orderingText";
-            this.orderingText.Size = new System.Drawing.Size(424, 25);
-            this.orderingText.TabIndex = 19;
-            this.orderingText.TextChanged += new System.EventHandler(this.orderingText_TextChanged);
+            this.orderingText.Size = new System.Drawing.Size(436, 31);
+            this.orderingText.TabIndex = 27;
             // 
             // serviceText
             // 
-            this.serviceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
-            this.serviceText.Location = new System.Drawing.Point(217, 76);
+            this.serviceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serviceText.Location = new System.Drawing.Point(217, 79);
             this.serviceText.Name = "serviceText";
-            this.serviceText.Size = new System.Drawing.Size(424, 25);
-            this.serviceText.TabIndex = 18;
-            this.serviceText.TextChanged += new System.EventHandler(this.serviceText_TextChanged);
+            this.serviceText.Size = new System.Drawing.Size(436, 31);
+            this.serviceText.TabIndex = 28;
             // 
             // patientText
             // 
-            this.patientText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
-            this.patientText.Location = new System.Drawing.Point(217, 36);
+            this.patientText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patientText.Location = new System.Drawing.Point(217, 42);
             this.patientText.Name = "patientText";
-            this.patientText.Size = new System.Drawing.Size(424, 25);
-            this.patientText.TabIndex = 17;
-            this.patientText.TextChanged += new System.EventHandler(this.patientText_TextChanged);
+            this.patientText.Size = new System.Drawing.Size(436, 31);
+            this.patientText.TabIndex = 29;
             // 
             // label5
             // 
@@ -291,18 +286,6 @@ namespace ElationAutoImport
             this.panel1.Size = new System.Drawing.Size(645, 635);
             this.panel1.TabIndex = 5;
             // 
-            // patientFile
-            // 
-            this.patientFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.patientFile.Enabled = true;
-            this.patientFile.Location = new System.Drawing.Point(0, 0);
-            this.patientFile.Name = "patientFile";
-            this.patientFile.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("patientFile.OcxState")));
-            this.patientFile.Size = new System.Drawing.Size(680, 755);
-            this.patientFile.TabIndex = 10;
-            this.patientFile.Enter += new System.EventHandler(this.patientFile_Enter);
-            // 
             // convertFile
             // 
             this.convertFile.AutoSize = true;
@@ -320,6 +303,18 @@ namespace ElationAutoImport
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(0, 25);
             this.label8.TabIndex = 12;
+            // 
+            // patientFile
+            // 
+            this.patientFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.patientFile.Enabled = true;
+            this.patientFile.Location = new System.Drawing.Point(0, 0);
+            this.patientFile.Name = "patientFile";
+            this.patientFile.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("patientFile.OcxState")));
+            this.patientFile.Size = new System.Drawing.Size(680, 755);
+            this.patientFile.TabIndex = 10;
+            this.patientFile.Enter += new System.EventHandler(this.patientFile_Enter);
             // 
             // Rename_File
             // 

@@ -34,12 +34,15 @@ namespace ElationAutoImport
             // 
             // fileList
             // 
+            this.fileList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.fileList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileList.FormattingEnabled = true;
             this.fileList.ItemHeight = 25;
             this.fileList.Location = new System.Drawing.Point(-7, 1);
             this.fileList.Name = "fileList";
-            this.fileList.Size = new System.Drawing.Size(473, 429);
+            this.fileList.Size = new System.Drawing.Size(652, 429);
             this.fileList.TabIndex = 0;
             this.fileList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -47,7 +50,7 @@ namespace ElationAutoImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 450);
+            this.ClientSize = new System.Drawing.Size(644, 450);
             this.Controls.Add(this.fileList);
             this.Name = "PatientFiles";
             this.Text = "Patient Files";

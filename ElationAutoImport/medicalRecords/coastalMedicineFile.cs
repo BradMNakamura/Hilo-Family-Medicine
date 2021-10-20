@@ -2,13 +2,15 @@
 using System.Reflection;
 using System.IO;
 using System.Xml;
-namespace ElationAutoImport.medicalRecords
+namespace ElationAutoImport
 {
     class coastalMedicalFile : GeneralForm
     {
         const int CPAP_SUPPLIES = 1;
-        public coastalMedicalFile(string[] textArray, int fileType)
+        string orignalName;
+        public coastalMedicalFile(string[] textArray, string sourceFile, int fileType)
         {
+            orignalName = Path.GetFileName(sourceFile);
             if (fileType == CPAP_SUPPLIES)
             {
                 traverse_CpapAndSupplies(textArray);
@@ -37,8 +39,12 @@ namespace ElationAutoImport.medicalRecords
                 if (patientName.Length == 0 && printWord.Contains("PATIENT:"))
                 {
                     string[] patName = printWord.Split(new string[] { "PATIENT:" }, StringSplitOptions.None);
-                    string[] lastFirst = patName[1].Split(new string[] { "," }, StringSplitOptions.None);
-                    patientName = lastFirst[1] + "," + lastFirst[0];
+                    if (patName.Length > 1)
+                    {
+                        string[] lastFirst = patName[1].Split(new string[] { "," }, StringSplitOptions.None);
+                        patientName = lastFirst[1] + "," + lastFirst[0];
+                    }
+                    else patientName = printWord.Replace("PATIENT:", "");
                 }
                 if (appointmentDate.Length == 0 && printWord.IndexOf("Date:", 0, StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
@@ -49,14 +55,14 @@ namespace ElationAutoImport.medicalRecords
                 }
                 if (procedureDesc.Length == 0 && printWord.Contains("Initial Date"))
                 {
-                    string[] getDate = printWord.Split(new string[] { "Initial Date" }, StringSplitOptions.None);
-                    procedureDesc = getDate[1];
+                    printWord = printWord.Replace("Initial Date", "");
+                    procedureDesc = printWord.TrimStart(":; ".ToCharArray());
                 }
             }
             RenameFile();
             //Save into xml file.
             var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var loadNames = Path.Combine(outPutDirectory, "ResourceFiles\\savedFolder.xml");
+            var loadNames = Path.Combine(outPutDirectory, @"ResourceFiles\savedNames.xml");
             loadNames = loadNames.Replace(@"file:\", "");
             XmlDocument doc = new XmlDocument();
             doc.Load(loadNames);
@@ -64,6 +70,11 @@ namespace ElationAutoImport.medicalRecords
             userData = patientName + procedureDesc;
             userData = userData.Replace(" ", "");
             testPatient.InnerText = userData;
+
+            if (!orignalName.Contains("DUPLICATE") && orignalName.Contains(patientName))
+            {
+                return;
+            }
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
                 

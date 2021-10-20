@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Windows.Forms;
-using ElationAutoImport.medicalRecords;
 namespace ElationAutoImport
 {
     public partial class PatientFiles : Form
@@ -22,7 +21,7 @@ namespace ElationAutoImport
                 for (int i = 0; i < scannedFiles.Count; i++)
                 {
                     string fileName = System.IO.Path.GetFileName(scannedFiles[i].Item1);
-                    fileList.Items.Add(fileName);
+                    fileList.Items.Add(i.ToString() + ". " + fileName);
                 }
                 mainWindow.patientFile.src = scannedFiles[0].Item1;
                 GeneralForm printOutput = scannedFiles[0].Item2;
@@ -48,12 +47,21 @@ namespace ElationAutoImport
 
         public void RemoveDocument()
         {
- 
+
+            if (fileList.Items.Count == 1)
+            {
+                scannedFiles.RemoveAt(0);
+                fileList.Items.RemoveAt(0);
+                mainWindow.ResetDocument();
+                mainWindow.patientFile.Hide();
+                return;
+            }
+
             if (fileList.SelectedIndex != -1 || fileList.Items.Count > 1)
             {
                 int index = 0;
                 GeneralForm printOutput = scannedFiles[index].Item2;
-                if (printOutput.reviewerName == "COASTAL MEDICAL SUPPLY CPAP" && !printOutput.fileName.Contains("DUPLICATE"))
+                /*if (printOutput.reviewerName == "COASTAL MEDICAL SUPPLY CPAP" && !printOutput.fileName.Contains("DUPLICATE"))
                 {
                     XmlDocument doc = new XmlDocument();
                     doc.Load(@"C:\Users\bradm\source\repos\ElationAutoImport\ElationAutoImport\xmlFiles\savedNames.xml");
@@ -61,7 +69,7 @@ namespace ElationAutoImport
                     addPatient.InnerText = (printOutput.patientName + printOutput.procedureDesc).Replace(" ","");
                     doc.DocumentElement.AppendChild(addPatient);
                     doc.Save(@"C:\Users\bradm\source\repos\ElationAutoImport\ElationAutoImport\xmlFiles\savedNames.xml");
-                }
+                */
                 if (fileList.Items.Count > 1)
                 {
                     scannedFiles.RemoveAt(0);
@@ -92,13 +100,7 @@ namespace ElationAutoImport
                 return;
             }
             
-            if(fileList.Items.Count == 1)
-            {
-                scannedFiles.RemoveAt(0);
-                fileList.Items.RemoveAt(0);
-                mainWindow.ResetDocument();
-                mainWindow.patientFile.Hide();
-            }
+
 
         }
         

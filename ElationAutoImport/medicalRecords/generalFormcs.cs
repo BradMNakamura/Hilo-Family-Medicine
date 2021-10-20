@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElationAutoImport.medicalRecords
+namespace ElationAutoImport
 {
     public abstract class GeneralForm
     {
@@ -19,10 +19,12 @@ namespace ElationAutoImport.medicalRecords
         public string fileName { get; protected set; } //Used to capture the correct format of the file based on declared vars above.
         protected List<string> docTags;  //Tags to put on document
         protected const string SERVICE_DATE = "SERVICE: ";
-        protected const string DOCTOR_NAKAMURA = "DAVID NAKAMURA, MD";
-        protected const string DOCTOR_ARAKAKI = "MELANIE ARAKAKI, MD";
+        protected const string DOCTOR_NAKAMURA = "nak";
+        protected const string DOCTOR_ARAKAKI = "arak";
 
         protected List<(string, string)> captureWords; //Keyword , Captured Word I.E Patient Name: , Brad Nakamura
+
+        private bool debugMode;
         public GeneralForm()
         {
             docTags = new List<string>();
@@ -35,6 +37,8 @@ namespace ElationAutoImport.medicalRecords
             docType = "";
             docComments = "";
             fileName = "";
+
+            debugMode = true;
         }
 
         protected void addCaptureWords(string[] keyWords)
@@ -66,8 +70,11 @@ namespace ElationAutoImport.medicalRecords
             Console.WriteLine("Procedure: " + procedureDesc);
             Console.WriteLine("Doc Type: " + docType);
             Console.WriteLine("Reviewing Doctor: " + ccName);*/
-            Console.WriteLine("Filename: " + fileName);
-            Console.WriteLine();
+            if (debugMode)
+            {
+                Console.WriteLine("Filename: " + fileName);
+                Console.WriteLine();
+            }
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 //using IronOcr;
 
 namespace ElationAutoImport
@@ -8,123 +9,220 @@ namespace ElationAutoImport
     public partial class MamogramReport : UserControl
     {
         string actualPath = "";
+        private string patientName;
+        private bool doneSearching;
+        private List<PatientInfo> patientList;
+        private List<string> fileNames;
+        private Dictionary<string, string> reviewerDoctors;
+        private Dictionary<string, int> docTypes;
+        private int sourceIndex; //Current index for adobe file.
+        private struct PatientInfo
+        {
+            public string firstName;
+            public string lastName;
+            public string patientID;
+            public string filename;
+            public string docType;
+            public string appointmentDate;
+        }
         public MamogramReport()
         {
             InitializeComponent();
+            patientName = "";
+            doneSearching = false;
+            patientList = new List<PatientInfo>();
+            fileNames = new List<string>();
+            reviewerDoctors = new Dictionary<string, string>();
+            docTypes = new Dictionary<string, int>();
+
+            reviewerDoctors.Add("nak", "David Nakamura, MD");
+            reviewerDoctors.Add("arak", "Melanie Arakaki, MD");
+
+            docTypes.Add("Cardiac", 0);
+            docTypes.Add("Consult", 1);
+            docTypes.Add("Hospital", 2);
+            docTypes.Add("Imaging", 3);
+            docTypes.Add("Laboratory", 4);
+            docTypes.Add("Legal", 5);
+            //docTypes.Add("Medical");
+            docTypes.Add("Misc", 7);
+
+            sourceIndex = -1;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MamogramReport_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e) //Folder Path
         {
             FolderBrowserDialog FBD = new FolderBrowserDialog();
-            
-            if(FBD.ShowDialog() == DialogResult.OK)
+
+            if (FBD.ShowDialog() == DialogResult.OK)
             {
                 actualPath = FBD.SelectedPath;
                 string[] fileNames = Directory.GetFiles(FBD.SelectedPath);
-                listBox1.Items.Clear();
-                foreach(string patientFile in fileNames)
+                //listBox1.Items.Clear();
+                foreach (string patientFile in fileNames)
                 {
-                    listBox1.Items.Add(System.IO.Path.GetFileName(patientFile));
+                    // listBox1.Items.Add(System.IO.Path.GetFileName(patientFile));
                 }
             }
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
         {
-            
-            ListBox lb = sender as ListBox;
-            int index = listBox1.SelectedIndex;
-            //Parse through the string and update the boxes accordingly.
-            if (lb != null)
+            if (searchPatient.Text.Length == 0)
             {
-                string fileName = listBox1.Items[index].ToString().TrimEnd('.','p','d','f');
-                string[] formatPreview = fileName.Split('_');
-                filenameBox.Text = @listBox1.Items[index].ToString();
-                reviewerBox.Text = formatPreview[4];
-                dateBox.Text = formatPreview[1].Replace('.','/');
-                doctypeBox.Text = formatPreview[3];
-                titleBox.Text = formatPreview[2];
+                searchPatient.Items.Clear();
+                doneSearching = false;
             }
-        }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click_2(object sender, EventArgs e)
-        {
-            
-            int index = listBox1.SelectedIndex;
-            if (index != -1)
+            if(searchPatient.Text.Contains(" ") && searchPatient.Items.Count == 0)
             {
-                System.Diagnostics.Process.Start(@actualPath + @"\" + @listBox1.Items[index].ToString());
-            } else {
-                MessageBox.Show("Please select a file!");
+                string[] getInfo = searchPatient.Text.Split(new string[] { " " }, StringSplitOptions.None);
+                patientName = getInfo[0];
+                if (!searchWorker.IsBusy)
+                {
+                    //searchPatient.Items.Clear();
+                    searchPatient.SelectionLength = 0;
+                    searchWorker.RunWorkerAsync();
+                }
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void searchWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-
+            ElationAPI test = new ElationAPI();
+            var foundPatients = test.FindPatient(patientName);
+            foreach (dynamic patientFile in foundPatients["results"])
+            {
+                this.Invoke(new MethodInvoker(delegate { searchPatient.Items.Add(patientFile["first_name"] + " " + patientFile["last_name"] + " DOB: " + patientFile["dob"]); searchPatient.SelectionLength = 0; }));
+                PatientInfo addPatient = new PatientInfo();
+                string fullName = patientFile["first_name"] + " " + patientFile["last_name"];
+                fullName = fullName.ToLower();
+                addPatient.firstName = patientFile["first_name"];
+                addPatient.lastName = patientFile["last_name"];
+                addPatient.patientID = patientFile["id"];
+                patientList.Add(addPatient);
+            }
+            //MessageBox.Show(test.FindPatient(patientName).ToString());
         }
 
-        private void filenameBox_TextChanged(object sender, EventArgs e)
+        private void searchWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            this.Invoke(new MethodInvoker(delegate {
+                foreach (dynamic patientName in searchPatient.Items)
+                {
+                    string[] getInfo = patientName.ToString().Split(new string[] { "DOB" }, StringSplitOptions.None);
+                    if (searchPatient.Text.ToLower() == getInfo[0].ToLower())
+                    {
+                        SendKeys.Send(" ");
+                        break;
+                    }
+                }
+            }));
+            //this.Invoke(new MethodInvoker(delegate { searchPatient.SelectionLength = 0; }));
+            doneSearching = true;
+        }
+
+
+        private void openFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog FBD = new FolderBrowserDialog();
+
+            if (FBD.ShowDialog() == DialogResult.OK)
+            {
+                actualPath = FBD.SelectedPath;
+                string[] tempNames = Directory.GetFiles(FBD.SelectedPath);
+                fileNames.Clear();
+                foreach (string fileName in tempNames)
+                {
+                    fileNames.Add(fileName);
+                }
+                patientFile.src = tempNames[0];
+                sourceIndex = 0;
+                FillReport();
+            }
+        }
+
+        private void prevButon_Click(object sender, EventArgs e)
+        {
+            if (sourceIndex == -1) return; //No source chosen.
+            if (sourceIndex > 0)
+            {
+                sourceIndex--;
+                patientFile.src = fileNames[sourceIndex];
+                FillReport();
+            }
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            if (sourceIndex == -1) return;
+            if (sourceIndex < fileNames.Count - 1)
+            {
+                sourceIndex++;
+                patientFile.src = fileNames[sourceIndex];
+                FillReport();
+            }
+        }
+
+        private void FillReport()
+        {
+            if (sourceIndex == -1) return;
+            fileText.Text = Path.GetFileNameWithoutExtension(fileNames[sourceIndex]);
+            reviewerText.Text = "";
+            //MessageBox.Show(Path.GetFileNameWithoutExtension(fileNames[sourceIndex]));
+            string tempFile = Path.GetFileNameWithoutExtension(fileNames[sourceIndex]);
+            string[] getInfo = tempFile.Split(new string[] { "_" }, StringSplitOptions.None);
+            if (getInfo.Length > 3)
+            {
+                getInfo[1] = getInfo[1].Replace(".", "/");
+                dateText.Text = getInfo[1];
+                if (docTypes.ContainsKey(getInfo[2]))
+                {
+                    docBox.SelectedIndex = docTypes[getInfo[2]];
+                }
+                if (reviewerDoctors.ContainsKey(getInfo[getInfo.Length - 1])) ;
+                {
+                    reviewerText.Text = reviewerDoctors[getInfo[getInfo.Length - 1]];
+                }
+
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if(searchPatient.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a patient");
+                return;
+            }
+            if(sourceIndex == -1)
+            {
+                MessageBox.Show("Please select a file");
+                return;
+            }
+            ElationAPI test = new ElationAPI();
+            //test.UploadReport(fileNames[sourceIndex], null, )
+            Dictionary<string, string> patInfo = new Dictionary<string, string>();
+            //Need appointment date
+            //Need doctype
+            //need filename
+            string[] getInfo = fileNames[sourceIndex].Split(new string[] { "_" }, StringSplitOptions.None);
+            foreach(string findType in getInfo)
+            {
+                if(docTypes.ContainsKey(findType))
+                {
+                    patInfo.Add("doc_type", findType);
+                }
+            }
+            patInfo.Add("date", getInfo[1].Replace(" ", ""));
+            patInfo.Add("filename", fileNames[sourceIndex]);
+
+            var patFile = test.ExactPatient(patientList[searchPatient.SelectedIndex].patientID);
+            MessageBox.Show(test.UploadReport(patInfo, patFile));
 
         }
     }

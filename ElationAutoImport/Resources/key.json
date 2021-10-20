@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "elationautoimport-texttospeech",
+  "private_key_id": "07ce5d5f5f69da10d19724c34bddfb40b041793e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1cjYXCp8QsehF\nZbhdyLpQi06Iek1tRZo4LHBFkCmSRW+eC/gznPIQiDcXFfJ0+qoLHSZiP4kFHd+s\n1NXQqFlMU0EneNmxnSlkUZqI96bHtDddWELTxa85RDv47paqvGEOYxcuyoQv6Om+\nLOVevejVF3dscfw32M4/FWME2ahAKSDheHKkwSwTsDm5Fkr3wjeK4RuaSpO/VZj1\nRAPL/oLvoZhAyyTvVtODp56sJsqGV+R/2CIjXsEnDUg0mOCIkXZDH5ZCnsbICF0y\n2ZGC7hGTl0VOJTFFitbudpg5/XnMSFxa8NtJrK+fcgrSKuWjZsMyYIIBMiF1X9g/\nltcm86/JAgMBAAECggEAAvEesznFnEvE0D08OO8MevUAmWIMQn7hUihW9gBxSsZr\n7x7SunmAtj0TJuwWQd3KPIMPkIJnCmlygIxJ3t0f54bRCglhqYl6tpOZIxU1g8w7\npTyNXCl6yWhTuu9EC5whdw4rEyPkR/I+5J8N5VREbmdilQ71uoJozlPehrawYuvm\nE+D85+ll0OcsRgE6CUBze4OaZL8LJkq34z++YMGJtGEOho0ylppC/AXKKvFmz7JN\n/bfyu4C3Ydl1Pm0BZamvSc0ItbPCqUu0m5FqAq2ozQL/i3FXcUmzMLg7FUQk79hf\nj/PWPeMUIuiSGkIG18nl5rdA6VAEim6os4DOIoFZRQKBgQD1FdHOC/stX+xW0yRz\naotMv0Yi1f7fJWIHG843MFdWx3VNHIUejOGBylJEtXpjEX+/orz0bjVR3AuUqnyY\ny2FKJ/6YIAwii6bbz+lx+JmPHjOF0ZGXlgSODjbtbcysk/rWbKHJD2aaSW5siUhx\nPkF+Zhzk64sBOpHY0OMH1rKNpQKBgQC9htoSTQKxUFPBNOMJFh8mZE80ML74wwU2\n1DA+FR5CAB3xArtHviUxDPe/VfYqW+anjvYrK3Jr9uctafez5ITjaUAmQH6Y+rOQ\nDpcA0hBfrzL84DSLQmSAJZfU//lrv9PCXTKTU/7OC9IGmu14/zzVWArD9SAVinEM\nyN2ycs+IVQKBgD95GC4h4jpdJmtSIZWWmV8WBocNHwYRu3KV2/FlHqmF3LZM1ZkU\n6W5gxK+wxHKV3Jz3+7HePQbnU0R8Zup3ecnn08L4QcxMmLlC/nWa6cIsEzHsFaXJ\nn4Je4hDZp/FmHcecuMXGrE73B5cqcs2JTxL6RS9wZT67OXyKlNG54+JVAoGBAJ3y\neWCRD3JoCDTW93KGHhWnuR48lZrJJFpKQZ4riVjlsg4+AYfLnkEfloS9hfZNOo9f\npCXcAnKZhJWjX0xrYJgJCe4XB6pEHEss7YlAh2bGoo595yw7e3gUXFGltd6nMjoj\n41dGw+5BiZn5mXih9beytN4UNdXd11MZPzFNX0k1AoGAUS1t4m+hr1WC+kWjVCyS\nDrB6uS1iENsqLSeEUKIjLNrDv1+0jBQzyx3nUrdH0Ujs4H6I4V3EAUa7TQWqG766\n1PqKtD7QRSDEvLDewyMu9wYNREmPHLBcM0xe5v2D0PZsXxHGxztWjLyZv15KuPXi\nIvnPvM9evHyozOU1E17bT9E=\n-----END PRIVATE KEY-----\n",
+  "client_email": "elationautoimporter@elationautoimport-texttospeech.iam.gserviceaccount.com",
+  "client_id": "115659257863331063333",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/elationautoimporter%40elationautoimport-texttospeech.iam.gserviceaccount.com"
+}

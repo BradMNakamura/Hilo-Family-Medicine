@@ -34,7 +34,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.settingButtom = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.papReport = new System.Windows.Forms.Button();
+            this.createReferral = new System.Windows.Forms.Button();
             this.dreReport = new System.Windows.Forms.Button();
             this.dexaReport = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,10 +46,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.rename_File1 = new ElationAutoImport.Rename_File();
+            this.patientSummary1 = new ElationAutoImport.PatientSummary();
+            this.rename_File2 = new ElationAutoImport.Rename_File();
             this.homePage1 = new ElationAutoImport.HomePage();
             this.mamogramReport1 = new ElationAutoImport.MamogramReport();
             this.customFile1 = new ElationAutoImport.customFile();
+            this.settingsPanel1 = new ElationAutoImport.settingsPanel();
+            this.createReferral1 = new ElationAutoImport.CreateReferral();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -73,7 +76,7 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.panel3.Controls.Add(this.settingButtom);
             this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.papReport);
+            this.panel3.Controls.Add(this.createReferral);
             this.panel3.Controls.Add(this.dreReport);
             this.panel3.Controls.Add(this.dexaReport);
             this.panel3.Controls.Add(this.button3);
@@ -84,7 +87,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(329, 873);
             this.panel3.TabIndex = 5;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // settingButtom
             // 
@@ -92,11 +94,14 @@
             this.settingButtom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settingButtom.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingButtom.ForeColor = System.Drawing.SystemColors.Control;
+            this.settingButtom.Image = ((System.Drawing.Image)(resources.GetObject("settingButtom.Image")));
+            this.settingButtom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.settingButtom.Location = new System.Drawing.Point(3, 768);
             this.settingButtom.Name = "settingButtom";
             this.settingButtom.Size = new System.Drawing.Size(323, 100);
             this.settingButtom.TabIndex = 9;
             this.settingButtom.Text = "Settings";
+            this.settingButtom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.settingButtom.UseVisualStyleBackColor = true;
             this.settingButtom.Click += new System.EventHandler(this.settingButtom_Click);
             // 
@@ -106,27 +111,32 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.SystemColors.Control;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.Location = new System.Drawing.Point(3, 662);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(323, 100);
             this.button8.TabIndex = 8;
             this.button8.Text = "Coming Soon";
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // papReport
+            // createReferral
             // 
-            this.papReport.FlatAppearance.BorderSize = 0;
-            this.papReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.papReport.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.papReport.ForeColor = System.Drawing.SystemColors.Control;
-            this.papReport.Location = new System.Drawing.Point(3, 556);
-            this.papReport.Name = "papReport";
-            this.papReport.Size = new System.Drawing.Size(323, 100);
-            this.papReport.TabIndex = 7;
-            this.papReport.Text = "Coming Soon";
-            this.papReport.UseVisualStyleBackColor = true;
-            this.papReport.Click += new System.EventHandler(this.papReport_Click);
+            this.createReferral.FlatAppearance.BorderSize = 0;
+            this.createReferral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createReferral.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createReferral.ForeColor = System.Drawing.SystemColors.Control;
+            this.createReferral.Image = ((System.Drawing.Image)(resources.GetObject("createReferral.Image")));
+            this.createReferral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.createReferral.Location = new System.Drawing.Point(3, 553);
+            this.createReferral.Name = "createReferral";
+            this.createReferral.Size = new System.Drawing.Size(323, 100);
+            this.createReferral.TabIndex = 7;
+            this.createReferral.Text = "Create Referral";
+            this.createReferral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.createReferral.UseVisualStyleBackColor = true;
+            this.createReferral.Click += new System.EventHandler(this.papReport_Click);
             // 
             // dreReport
             // 
@@ -134,11 +144,14 @@
             this.dreReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dreReport.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dreReport.ForeColor = System.Drawing.SystemColors.Control;
+            this.dreReport.Image = ((System.Drawing.Image)(resources.GetObject("dreReport.Image")));
+            this.dreReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dreReport.Location = new System.Drawing.Point(3, 441);
             this.dreReport.Name = "dreReport";
             this.dreReport.Size = new System.Drawing.Size(323, 100);
             this.dreReport.TabIndex = 6;
-            this.dreReport.Text = "Coming Soon";
+            this.dreReport.Text = "Patient Visit";
+            this.dreReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.dreReport.UseVisualStyleBackColor = true;
             this.dreReport.Click += new System.EventHandler(this.dreReport_Click);
             // 
@@ -148,11 +161,14 @@
             this.dexaReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dexaReport.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dexaReport.ForeColor = System.Drawing.SystemColors.Control;
+            this.dexaReport.Image = ((System.Drawing.Image)(resources.GetObject("dexaReport.Image")));
+            this.dexaReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dexaReport.Location = new System.Drawing.Point(3, 335);
             this.dexaReport.Name = "dexaReport";
             this.dexaReport.Size = new System.Drawing.Size(323, 100);
             this.dexaReport.TabIndex = 5;
             this.dexaReport.Text = "Custom File";
+            this.dexaReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.dexaReport.UseVisualStyleBackColor = true;
             this.dexaReport.Click += new System.EventHandler(this.dexaReport_Click);
             // 
@@ -162,11 +178,15 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.Control;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.Location = new System.Drawing.Point(3, 20);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(326, 100);
             this.button3.TabIndex = 4;
             this.button3.Text = "Home";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -176,11 +196,14 @@
             this.cpapReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cpapReport.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cpapReport.ForeColor = System.Drawing.SystemColors.Control;
+            this.cpapReport.Image = ((System.Drawing.Image)(resources.GetObject("cpapReport.Image")));
+            this.cpapReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cpapReport.Location = new System.Drawing.Point(3, 232);
             this.cpapReport.Name = "cpapReport";
             this.cpapReport.Size = new System.Drawing.Size(323, 100);
             this.cpapReport.TabIndex = 3;
             this.cpapReport.Text = "Rename PDF";
+            this.cpapReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cpapReport.UseVisualStyleBackColor = true;
             this.cpapReport.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -190,11 +213,14 @@
             this.importReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.importReport.Font = new System.Drawing.Font("Microsoft YaHei", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importReport.ForeColor = System.Drawing.SystemColors.Control;
+            this.importReport.Image = ((System.Drawing.Image)(resources.GetObject("importReport.Image")));
+            this.importReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.importReport.Location = new System.Drawing.Point(3, 126);
             this.importReport.Name = "importReport";
             this.importReport.Size = new System.Drawing.Size(326, 100);
             this.importReport.TabIndex = 2;
             this.importReport.Text = "Upload Report";
+            this.importReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.importReport.UseVisualStyleBackColor = true;
             this.importReport.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -236,7 +262,6 @@
             this.Mamogram.TabIndex = 2;
             this.Mamogram.Text = "Mamogram Report";
             this.Mamogram.UseVisualStyleBackColor = true;
-            this.Mamogram.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
@@ -246,7 +271,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1359, 20);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // contextMenuStrip1
             // 
@@ -262,37 +286,56 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_2);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // rename_File1
+            // patientSummary1
             // 
-            this.rename_File1.Location = new System.Drawing.Point(329, 126);
-            this.rename_File1.Name = "rename_File1";
-            this.rename_File1.Size = new System.Drawing.Size(1359, 755);
-            this.rename_File1.TabIndex = 5;
+            this.patientSummary1.Location = new System.Drawing.Point(329, 113);
+            this.patientSummary1.Name = "patientSummary1";
+            this.patientSummary1.Size = new System.Drawing.Size(1359, 755);
+            this.patientSummary1.TabIndex = 8;
+            // 
+            // rename_File2
+            // 
+            this.rename_File2.Location = new System.Drawing.Point(329, 115);
+            this.rename_File2.Name = "rename_File2";
+            this.rename_File2.Size = new System.Drawing.Size(1359, 755);
+            this.rename_File2.TabIndex = 7;
             // 
             // homePage1
             // 
-            this.homePage1.Location = new System.Drawing.Point(329, 126);
+            this.homePage1.Location = new System.Drawing.Point(329, 116);
             this.homePage1.Name = "homePage1";
             this.homePage1.Size = new System.Drawing.Size(1359, 744);
             this.homePage1.TabIndex = 4;
-            this.homePage1.Load += new System.EventHandler(this.homePage1_Load);
             // 
             // mamogramReport1
             // 
-            this.mamogramReport1.Location = new System.Drawing.Point(329, 123);
+            this.mamogramReport1.Location = new System.Drawing.Point(329, 116);
             this.mamogramReport1.Name = "mamogramReport1";
             this.mamogramReport1.Size = new System.Drawing.Size(1359, 745);
             this.mamogramReport1.TabIndex = 3;
-            this.mamogramReport1.Load += new System.EventHandler(this.mamogramReport1_Load);
             // 
             // customFile1
             // 
-            this.customFile1.Location = new System.Drawing.Point(329, 126);
+            this.customFile1.Location = new System.Drawing.Point(329, 117);
             this.customFile1.Name = "customFile1";
             this.customFile1.Size = new System.Drawing.Size(1359, 755);
             this.customFile1.TabIndex = 6;
+            // 
+            // settingsPanel1
+            // 
+            this.settingsPanel1.Location = new System.Drawing.Point(329, 115);
+            this.settingsPanel1.Name = "settingsPanel1";
+            this.settingsPanel1.Size = new System.Drawing.Size(1359, 755);
+            this.settingsPanel1.TabIndex = 9;
+            // 
+            // createReferral1
+            // 
+            this.createReferral1.Location = new System.Drawing.Point(329, 113);
+            this.createReferral1.Name = "createReferral1";
+            this.createReferral1.Size = new System.Drawing.Size(1359, 744);
+            this.createReferral1.TabIndex = 10;
             // 
             // Form1
             // 
@@ -301,16 +344,20 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1688, 873);
-            this.Controls.Add(this.customFile1);
-            this.Controls.Add(this.rename_File1);
-            this.Controls.Add(this.homePage1);
+            this.Controls.Add(this.createReferral1);
+            this.Controls.Add(this.settingsPanel1);
+            this.Controls.Add(this.patientSummary1);
+            this.Controls.Add(this.rename_File2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.homePage1);
             this.Controls.Add(this.mamogramReport1);
+            this.Controls.Add(this.customFile1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "ElationAutoImporter";
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -332,13 +379,17 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button papReport;
+        private System.Windows.Forms.Button createReferral;
         private System.Windows.Forms.Button dreReport;
         private System.Windows.Forms.Button dexaReport;
         private System.Windows.Forms.Button settingButtom;
         private MamogramReport mamogramReport1;
         private HomePage homePage1;
-        private Rename_File rename_File1;
+        //private Rename_File rename_File1;
         private customFile customFile1;
+        private Rename_File rename_File2;
+        private PatientSummary patientSummary1;
+        private settingsPanel settingsPanel1;
+        private CreateReferral createReferral1;
     }
 }

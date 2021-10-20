@@ -75,5 +75,15 @@ namespace ElationAutoImport.Properties {
                 return ResourceManager.GetString("faxNumbers", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Montserrat {
+            get {
+                object obj = ResourceManager.GetObject("Montserrat", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

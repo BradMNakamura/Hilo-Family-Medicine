@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ElationAutoImport.medicalRecords
+namespace ElationAutoImport
 {
     public class hraFile : GeneralForm
     {
@@ -21,27 +21,26 @@ namespace ElationAutoImport.medicalRecords
             {
                 string printWord = nextLine.ToString(); //Line needed because of weird bug.
                 //Console.WriteLine(printWord);
-                if (printWord.Contains(DOCTOR_NAKAMURA))
+                if (ccName.Length == 0 && printWord.Contains("NAKAMURA"))
                 {
                     ccName = DOCTOR_NAKAMURA;
                 }
-                if (printWord.Contains(DOCTOR_ARAKAKI))
+                if (ccName.Length == 0 && printWord.Contains("ARAKAKI"))
                 {
                     ccName = DOCTOR_ARAKAKI;
                 }
                 string test = nextLine.ToString();
-                if (printWord.Contains("DATE OF SERVICE: "))
+                if (appointmentDate.Length == 0 && printWord.Contains("DATE OF SERVICE:"))
                 {
-                    string[] servDate = printWord.Split(new string[] { "DATE OF SERVICE: " }, StringSplitOptions.None);
-                    appointmentDate = servDate[1];
+                    string[] servDate = printWord.Split(new string[] { "DATE OF SERVICE:" }, StringSplitOptions.None);
+                    if(servDate.Length > 1) appointmentDate = servDate[1];
                 }
-                if (printWord.Contains("REFERRING PHYSICIAN:"))
+                if (reviewerName.Length == 0 && printWord.Contains("REFERRING PHYSICIAN:"))
                 {
-                    string[] refDoctor = printWord.Split(new string[] { "REFERRING PHYSICIAN: " }, StringSplitOptions.None);
-
-                    reviewerName = refDoctor[1]; //Represents only the doctors name after split.
+                    string[] refDoctor = printWord.Split(new string[] { "REFERRING PHYSICIAN:"}, StringSplitOptions.None);
+                    if(refDoctor.Length > 1) reviewerName = refDoctor[1]; //Represents only the doctors name after split.
                 }
-                if (printWord.Contains(",") && !foundName)
+                if (patientName.Length == 0 && printWord.Contains(",") && !foundName)
                 {
                     bool hasDigits = false;
                     for (int i = 0; i < printWord.Length; i++)
@@ -55,9 +54,14 @@ namespace ElationAutoImport.medicalRecords
                     {
                         foundName = true;
                         patientName = printWord;
+                        if (patientName.Contains(','))
+                        {
+                            string[] lastFirst = patientName.Split(new string[] { "," }, StringSplitOptions.None);
+                            if(lastFirst.Length > 1) patientName = lastFirst[1] + "," + lastFirst[0];
+                        }
                     }
                 }
-                if (printWord.Contains("PROCEDURE") || procedureFound)
+                if (procedureDesc.Length == 0 && printWord.Contains("PROCEDURE") || procedureFound)
                 {
                     if (procedureFound)
                     {
@@ -126,7 +130,7 @@ namespace ElationAutoImport.medicalRecords
             }
 
             //Once traversal is done. Use vars to create the correct filename format.
-            RenameFile();
+            fileName = patientName + "_" + appointmentDate + "_" + docType + "_" + procedureDesc + "_" + reviewerName + "_" + docLocation + "_" + ccName;
         }
 
         //Function is needed because weird bug occurs when doing string concationation in printInfo function

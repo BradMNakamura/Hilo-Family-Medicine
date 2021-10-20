@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using IronOcr ;
+
 namespace ElationAutoImport
-{
+{ 
     class CaptureText
     {
         private string textArray;
         public CaptureText(string fileName)
         {
+            //IronOcr.Installation.LicenseKey = "IRONOCR.HILOFAMILYMEDICINE.IRO210901.8235.19124.109012‐D5BFDC8A8D‐B2ONIURAW5G4HT7‐5GZSCFJBNMRHP4H7AVCE4X2P‐4L55LJ5TUTK2‐NZBWJPRSE67C‐3LYBHVLPOT3EG5VOCHEA‐PROFESSIONAL.SUB‐2C7ORH.RENEW.SUPPORT.01.SEP.2022";
             var Ocr = new IronTesseract();
             StringBuilder text1 = new StringBuilder();
             if (File.Exists(fileName))
@@ -29,6 +31,7 @@ namespace ElationAutoImport
                     text1.Append(currentText);
                 }
                 pdfReader.Close();
+
                 if (text1.Length == 0)
                 {
                     using (var Input = new OcrInput())

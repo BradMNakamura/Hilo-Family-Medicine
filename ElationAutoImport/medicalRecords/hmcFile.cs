@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ElationAutoImport.medicalRecords
+namespace ElationAutoImport
 {
     public class hmcFile : GeneralForm
     {
@@ -28,46 +28,48 @@ namespace ElationAutoImport.medicalRecords
             foreach (string nextLine in textArray)
             {
                 string printWord = nextLine.ToString();
-                if (printWord.Contains("Diagnostic Imaging Report"))
+                if (docType.Length == 0 && printWord.Contains("Diagnostic Imaging Report"))
                 {
                     isDiagnosticReport = true;
                     docType = "Imaging";
                     docLocation = "HMC";
                 }
                 if (isDiagnosticReport)
-                {
-                    //Console.WriteLine(printWord);   
-                    if (printWord.Contains("Nakamura,David"))
+                {  
+                    if (ccName.Length == 0 && printWord.Contains("Nakamura"))
                     {
                         ccName = DOCTOR_NAKAMURA;
                     }
-                    if (printWord.Contains("Arakaki,Melanie"))
+                    if (ccName.Length == 0 && printWord.Contains("Arakaki"))
                     {
                         ccName = DOCTOR_ARAKAKI;
                     }
 
-                    if (printWord.Contains("Patient:"))
+                    if (patientName.Length == 0 && printWord.Contains("Patient:"))
                     {
                         printWord = printWord.Remove(0, 9);
-                        string[] patName = printWord.Split(new string[] { "DOB" }, StringSplitOptions.None);
-                        patientName = fixRomanNumbers(patName[0]);
+                        string[] getName = printWord.Split(new string[] { "DOB" }, StringSplitOptions.None);
+                        patientName = fixRomanNumbers(getName[0]);
+                        if (patientName.Contains(','))
+                        {
+                            string[] lastFirst = patientName.Split(new string[] { "," }, StringSplitOptions.None);
+                            if(lastFirst.Length > 1) patientName = lastFirst[1] + "," + lastFirst[0];
+                        }
                     }
-                    if (printWord.Contains("Service Date"))
+                    if (appointmentDate.Length == 0 && printWord.Contains("Service Date"))
                     {
-                        string test = "Service Date: ";
-                        string[] servDate = printWord.Split(new string[] { "Service Date: " }, StringSplitOptions.None);
-                        appointmentDate = servDate[1];
+                        string[] servDate = printWord.Split(new string[] { "Service Date:" }, StringSplitOptions.None);
+                        if(servDate.Length > 1) appointmentDate = servDate[1];
                     }
-                    if (printWord.Contains("Ordering Physician: "))
+                    if (reviewerName.Length ==0 && printWord.Contains("Ordering Physician: "))
                     {
-                        string[] orderPhys = printWord.Split(new string[] { "Ordering Physician: " }, StringSplitOptions.None);
-                        reviewerName = orderPhys[1];
+                        string[] orderPhys = printWord.Split(new string[] { "Ordering Physician:" }, StringSplitOptions.None);
+                        if(orderPhys.Length > 1) reviewerName = orderPhys[1];
                     }
-                    if (printWord.Contains("PROCEDURE") || procedureFound)
+                    if (procedureDesc.Length == 0 && printWord.Contains("PROCEDURE") || procedureFound)
                     {
                         if (procedureFound) //This is needed to capture next line since PROCEDURE is not the same line as the desc.
                         {
-                            Console.WriteLine(printWord);
                             if (printWord.Contains('.')) //Used to only get first sentence of procedure.
                             {
                                 string[] temp = printWord.Split('.');
@@ -75,20 +77,14 @@ namespace ElationAutoImport.medicalRecords
                             }
                             else
                             {
-                                procedureDesc = printWord;
+                                procedureDesc = printWord.Replace("\n", "");
                             }
-                            procedureFound = false;
                         }
-                        else
-                        {
-                            procedureFound = true; //This will capture the next line in the foreach loop. Which is the procedure.
-                        }
+                        procedureFound = !procedureFound;
                     }
                 }
             }
-
-            //Once traversal is done. Use vars to create the correct filename format.
-            RenameFile();
+            fileName = patientName + "_" + appointmentDate + "_" + docType + "_" + procedureDesc + "_" + reviewerName + "_" + docLocation +"_" + ccName;
         }
 
         private void TraverseER(string[] textArray)
@@ -111,13 +107,16 @@ namespace ElationAutoImport.medicalRecords
                 else if (patientName.Length == 0 && printWord.Contains("Patient:"))
                 {
                     string[] patName = printWord.Split(new string[] { "Patient:" }, StringSplitOptions.None);
-                    string[] lastFirst = patName[1].Split(new string[] { "," }, StringSplitOptions.None);
-                    patientName = lastFirst[1] + "," + lastFirst[0];
+                    if (patName.Length > 1)
+                    {
+                        string[] lastFirst = patName[1].Split(new string[] { "," }, StringSplitOptions.None);
+                        if (lastFirst.Length > 1) patientName = lastFirst[1] + "," + lastFirst[0];
+                    }
                 }
                 else if (appointmentDate.Length == 0 && printWord.Contains("Service Date:"))
                 {
                     string[] getDate = printWord.Split(new string[] { "Service Date:" }, StringSplitOptions.None);
-                    appointmentDate = getDate[1];
+                    if(getDate.Length > 1) appointmentDate = getDate[1];
                 }
                 else if (procedureDesc.Length == 0 && printWord.Contains("DX::"))
                 {

@@ -59,7 +59,7 @@ namespace ElationAutoImport
         }
         private void button4_Click(object sender, EventArgs e) //Cpap
         {
-            rename_File1.BringToFront();
+            rename_File2.BringToFront();
         }
         private void dexaReport_Click(object sender, EventArgs e) //Dexa
         {
@@ -67,72 +67,22 @@ namespace ElationAutoImport
         }
         private void dreReport_Click(object sender, EventArgs e)
         {
-
+            patientSummary1.BringToFront();
         }
-        private void papReport_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void settingButtom_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mamogramReport1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void settingButtom_Click(object sender, EventArgs e)
         {
-
+           settingsPanel1.BringToFront();
         }
 
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void papReport_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void homePage1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_2(object sender, EventArgs e)
-        {
-
+            createReferral1.BringToFront();
         }
     }
 }
